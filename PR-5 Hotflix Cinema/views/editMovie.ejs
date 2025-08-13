@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/slimselect.css">
+  <link rel="stylesheet" href="/css/admin.css">
+
+  <!-- Icon font -->
+  <link rel="stylesheet" href="/css/tabler-icons.min.css">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/favicon-32x32.png">
+
+  <title>Edit Movie - <%= movie.movieName %>
+  </title>
+</head>
+
+<body>
+  <header class="header">
+    <!-- you can reuse your header HTML here -->
+  </header>
+
+  <main class="main">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Title -->
+        <div class="col-12">
+          <div class="main__title">
+            <h2>Edit Movie</h2>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="col-12">
+          <form action="/edit-movie/<%= movie._id %>" method="POST" enctype="multipart/form-data"
+            class="sign__form sign__form--add">
+            <div class="row">
+              <!-- Movie Name -->
+              <div class="col-12">
+                <div class="sign__group">
+                  <label class="sign__label">Movie Name*</label>
+                  <input type="text" class="sign__input" name="movieName" value="<%= movie.movieName %>" required>
+                </div>
+              </div>
+
+              <!-- Genre -->
+              <div class="col-12 col-md-6">
+                <div class="sign__group">
+                  <label class="sign__label">Genre*</label>
+                  <select id="sign__genre" class="sign__selectjs" name="genre" required>
+                    <option disabled>Select genre</option>
+                    <option value="Action" <%=movie.genre==="Action" ? "selected" : "" %>>Action</option>
+                    <option value="Comedy" <%=movie.genre==="Comedy" ? "selected" : "" %>>Comedy</option>
+                    <option value="Drama" <%=movie.genre==="Drama" ? "selected" : "" %>>Drama</option>
+                    <option value="Horror" <%=movie.genre==="Horror" ? "selected" : "" %>>Horror</option>
+                    <option value="Sci-Fi" <%=movie.genre==="Sci-Fi" ? "selected" : "" %>>Sci-Fi</option>
+                    <option value="Thriller" <%=movie.genre==="Thriller" ? "selected" : "" %>>Thriller</option>
+                    <option value="Romance" <%=movie.genre==="Romance" ? "selected" : "" %>>Romance</option>
+                    <option value="Animation" <%=movie.genre==="Animation" ? "selected" : "" %>>Animation</option>
+                    <option value="Documentary" <%=movie.genre==="Documentary" ? "selected" : "" %>>Documentary</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Language -->
+              <div class="col-12 col-md-6">
+                <div class="sign__group">
+                  <label class="sign__label">Language*</label>
+                  <input type="text" class="sign__input" name="language" value="<%= movie.language %>" required>
+                </div>
+              </div>
+
+              <!-- Duration -->
+              <div class="col-12 col-md-6">
+                <div class="sign__group">
+                  <label class="sign__label">Duration (minutes)*</label>
+                  <input type="number" class="sign__input" name="duration" value="<%= movie.duration %>" required>
+                </div>
+              </div>
+
+              <!-- Release Date -->
+              <div class="col-12 col-md-6">
+                <div class="sign__group">
+                  <label class="sign__label">Release Date*</label>
+                  <input type="date" class="sign__input" name="releaseDate"
+                    value="<%= movie.releaseDate.toISOString().split('T')[0] %>" required>
+                </div>
+              </div>
+
+              <!-- Ticket Price -->
+              <div class="col-12 col-md-6">
+                <div class="sign__group">
+                  <label class="sign__label">Ticket Price*</label>
+                  <input type="number" step="0.01" class="sign__input" name="ticketPrice"
+                    value="<%= movie.ticketPrice %>" required>
+                </div>
+              </div>
+
+              <!-- Rating -->
+              <div class="col-12 col-md-6">
+                <div class="sign__group">
+                  <label class="sign__label">Rating (1-10)*</label>
+                  <input type="number" min="1" max="10" class="sign__input" name="rating" value="<%= movie.rating %>"
+                    required>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="col-12">
+                <div class="sign__group">
+                  <label class="sign__label">Description*</label>
+                  <textarea class="sign__textarea" name="description" required><%= movie.description %></textarea>
+                </div>
+              </div>
+
+              <!-- Image -->
+              <div class="col-12">
+                <div class="sign__group">
+                  <label class="sign__label">Movie Image</label>
+                  <div class="sign__gallery" id="cover-preview">
+                    <label id="gallery1" for="sign__gallery-upload">Upload new poster</label>
+                    <input data-name="#gallery1" id="sign__gallery-upload" name="image" class="sign__gallery-upload"
+                      type="file" accept="image/*">
+                    <% if (movie.image) { %>
+                      <img src="<%= movie.image %>" alt="Current Poster"
+                        style="margin-top:10px; max-width:200px; border-radius:8px;">
+                      <% } %>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="col-12">
+                <button type="submit" class="sign__btn sign__btn--small"><span>Update Movie</span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- End Form -->
+      </div>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/slimselect.min.js"></script>
+  <script src="/js/smooth-scrollbar.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+
+</html>
