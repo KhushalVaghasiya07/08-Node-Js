@@ -35,8 +35,14 @@ exports.editFormRender = async (req, res) => {
   res.render("editMovie", { movie });
 };
 
-exports.addMovieFormRender = async (req, res) => {
+exports.addMovieFormRender = (req, res) => {
   res.render("addMovie");
+};
+
+exports.bookingViewPageRender = async (req, res) => {
+  let id = req.params.id;
+  let movie = await Movie.findById(id);
+  res.render("bokingPage" , { movie });
 };
 
 exports.editMovie = async (req, res) => {
