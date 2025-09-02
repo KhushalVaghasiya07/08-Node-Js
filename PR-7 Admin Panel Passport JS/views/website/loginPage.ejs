@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogzyyy - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #28b779;
+      --primary-dark: #219c67;
+      --secondary: #ffb848;
+      --secondary-dark: #e6a43a;
+      --accent: #da542e;
+      --text: #232e3c;
+      --text-light: #454552;
+      --text-lighter: #adb6bd;
+      --border: #e9eaea;
+      --bg-light: #f9fafb;
+      --white: #ffffff;
+      --error: #e74c3c;
+      --success: #2ecc71;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(52, 64, 74, 0.15);
+      width: 100%;
+      max-width: 430px;
+      padding: 40px 35px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .login-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 45px rgba(52, 64, 74, 0.2);
+    }
+
+    .brand-section {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .brand-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px auto;
+      box-shadow: 0 4px 10px rgba(218, 84, 46, 0.25);
+    }
+
+    .brand-logo i {
+      font-size: 2rem;
+      color: var(--white);
+    }
+
+    .brand-title {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      margin-bottom: 5px;
+    }
+
+    .brand-tagline {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .login-heading {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      position: relative;
+    }
+
+    .login-heading:after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      margin: 10px auto 0;
+      border-radius: 3px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-lighter);
+      font-size: 1.05rem;
+      transition: color 0.3s;
+    }
+
+    .input-with-icon input {
+      width: 100%;
+      padding: 15px 15px 15px 45px;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      background: var(--bg-light);
+      font-size: 1.02rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .input-with-icon input:focus {
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(40, 183, 121, 0.15);
+    }
+
+    .input-with-icon input:focus+i {
+      color: var(--primary);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-lighter);
+      cursor: pointer;
+      font-size: 1.05rem;
+      transition: color 0.3s;
+    }
+
+    .password-toggle:hover {
+      color: var(--primary);
+    }
+
+    .form-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+
+    .remember-me input {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .remember-me label {
+      margin-bottom: 0;
+      color: var(--text-light);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .form-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .form-links a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 15px 0;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-signin {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(40, 183, 121, 0.25);
+    }
+
+    .btn-signin:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 6px 15px rgba(40, 183, 121, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-signup {
+      background: var(--white);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-signup:hover {
+      background: var(--bg-light);
+      transform: translateY(-2px);
+    }
+
+    .social-login {
+      margin: 25px 0;
+      position: relative;
+      text-align: center;
+    }
+
+    .social-login:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      right: 0;
+      border-top: 1px solid var(--border);
+      z-index: 1;
+    }
+
+    .social-login p {
+      display: inline-block;
+      background: var(--white);
+      position: relative;
+      z-index: 2;
+      padding: 0 15px;
+      color: var(--text-lighter);
+      font-size: 0.95rem;
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 12px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 500;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .social-btn:hover {
+      background: var(--bg-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+
+
+    .social-btn.facebook {
+      color: #4267B2;
+    }
+
+    .login-footer {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 0.95rem;
+      color: var(--text-lighter);
+      border-top: 1px solid var(--border);
+    }
+
+    .login-footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .login-footer a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .notification.success {
+      background: var(--success);
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .notification.error {
+      background: var(--error);
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .loader {
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 25px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .social-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="brand-section">
+      <div class="brand-logo"><i class="fa-solid fa-pen-nib"></i></div>
+      <h1 class="brand-title">Blogzyyy</h1>
+    </div>
+
+    <h2 class="login-heading">Sign in to your account</h2>
+
+    <form autocomplete="off" onsubmit="login(event)" id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-with-icon">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-with-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="••••••••" required />
+          <span class="password-toggle" id="passwordToggle">
+            <i class="far fa-eye"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-links">
+        <div class="remember-me">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Remember me</label>
+        </div>
+        <a href="#" tabindex="0">Forgot password?</a>
+      </div>
+
+      <div class="btn-group">
+        <button type="submit" class="btn btn-signin" id="signInBtn">
+          <span>Sign In</span>
+          <div class="loader" id="signInLoader"></div>
+        </button>
+        <button type="button" class="btn btn-signup">
+          <i class="fas fa-user-plus"></i>
+          <a href="/Blogzyyy/signup"><span>Sign Up</span></a>
+        </button>
+      </div>
+    </form>
+
+    <div class="login-footer">
+      © 2025 Blogzyyy. All rights reserved. <a href="#">Terms</a> & <a href="#">Privacy</a>
+    </div>
+  </div>
+
+  <div class="notification" id="notification"></div>
+
+  <script>
+    // DOM elements
+    const loginForm = document.getElementById('loginForm');
+    const passwordToggle = document.getElementById('passwordToggle');
+    const passwordInput = document.getElementById('password');
+    const signInBtn = document.getElementById('signInBtn');
+    const signInLoader = document.getElementById('signInLoader');
+    const notification = document.getElementById('notification');
+
+    // Toggle password visibility
+    passwordToggle.addEventListener('click', function () {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+
+      // Toggle eye icon
+      const eyeIcon = this.querySelector('i');
+      eyeIcon.classList.toggle('fa-eye');
+      eyeIcon.classList.toggle('fa-eye-slash');
+    });
+
+    // Show notification function
+    function showNotification(message, type) {
+      notification.textContent = message;
+      notification.className = 'notification ' + type;
+
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        notification.className = 'notification';
+      }, 3000);
+    }
+
+    // Login function
+    function login(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const rememberMe = document.getElementById('remember').checked;
+
+      // Basic validation
+      if (!email || !password) {
+        showNotification("Please fill in all fields", "error");
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showNotification("Please enter a valid email address", "error");
+        return;
+      }
+
+      // Show loading state
+      signInBtn.disabled = true;
+      signInLoader.style.display = 'block';
+      signInBtn.querySelector('span').textContent = 'Signing In...';
+
+      // Simulate API call
+      setTimeout(() => {
+        // For demo purposes - in a real app, this would be an API call to your backend
+        if (email === "demo@blogzyyy.com" && password === "password") {
+          showNotification("Login successful! Redirecting...", "success");
+          // In a real app, you would redirect to the dashboard
+          setTimeout(() => {
+            window.location.href = "/dashboard"; // Simulated redirect
+          }, 1500);
+        } else {
+          showNotification("Invalid email or password", "error");
+          signInBtn.disabled = false;
+          signInLoader.style.display = 'none';
+          signInBtn.querySelector('span').textContent = 'Sign In';
+        }
+      }, 1500);
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>
