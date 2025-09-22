@@ -1,0 +1,78 @@
+<%- include('../header') %>
+
+  <div class="page-wrapper">
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">View All Sub Categories</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title m-b-0">Sub Category Information</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <input type="text" name="search" />
+                <button type="submit">Search</button>
+              </form>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Category Name</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Sub Category</th>
+                  <th scope="col" colspan="2">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% subCatagory.forEach((cat, i)=> { %>
+                  <tr>
+                    <th scope="row">
+                      <%= i + 1 %>
+                    </th>
+                    <td>
+                      <%= cat.catagory ? cat.catagory.CatagoryTitle : "No Catagory" %>
+                    </td>
+                    <td>
+                      <% if(cat.catagory) { %>
+
+                        <img src="<%= cat.catagory.CatagoryImg %>" height="50" />
+                    </td>
+
+                    <% } else { %>
+                      <p>No ImageF</p>
+                      <% } %>
+
+                        <td>
+                          <%= cat.subCatagoryTitle %>
+                        </td>
+                        <td><a href="/SubCatagory/editSubCatagory/<%= cat._id %>"><i class="fas fa-edit"></i></a></td>
+                        <td><a href="/SubCatagory/deleteSubCatagory/<%= cat._id %>"><i class="fas fa-trash"></i></a>
+                        </td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <%- include('../footer') %>

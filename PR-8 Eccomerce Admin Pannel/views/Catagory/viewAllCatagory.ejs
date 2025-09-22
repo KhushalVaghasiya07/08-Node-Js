@@ -1,0 +1,109 @@
+<%- include("../header") %>
+
+  <!-- ============================================================== -->
+  <!-- Page wrapper  -->
+  <!-- ============================================================== -->
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Tables</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title m-b-0">Category Table</h5>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Category Name</th>
+                  <th>Category Image</th>
+                  <th colspan="2">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (Catagories && Catagories.length> 0) { %>
+                  <% Catagories.forEach((catagory, i)=> { %>
+                    <tr>
+                      <td>
+                        <%= i + 1 %>
+                      </td>
+                      <td>
+                        <%= catagory.CatagoryTitle %>
+                      </td>
+                      <td>
+                        <img src="<%= catagory.CatagoryImg %>" height="50" alt="Category Image">
+                      </td>
+                      <td>
+                        <a href="/Catagory/editCatagory/<%= catagory._id %>">
+                          <i class="far fa-edit"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="/Catagory/delete-catagory/<%= catagory._id %>">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <% }) %>
+                      <% } else { %>
+                        <tr>
+                          <td colspan="5" class="text-center">No categories found</td>
+                        </tr>
+                        <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+
+
+
+    <style>
+        .viewAllUserImg {
+          border-radius: 50%;
+        }
+      </style>
+        <%- include("../footer") %>

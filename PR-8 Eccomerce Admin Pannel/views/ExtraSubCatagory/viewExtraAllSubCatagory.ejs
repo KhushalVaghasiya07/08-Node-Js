@@ -1,0 +1,75 @@
+<%- include('../header') %>
+
+  <div class="page-wrapper">
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">View All Sub Categories</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title m-b-0">Sub Category Information</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <input type="text" name="search" />
+                <button type="submit">Search</button>
+              </form>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Category Name</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Sub Category</th>
+                  <th scope="col">Extra Sub Category</th>
+                  <th scope="col" colspan="2">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% extraCatagory.forEach((extraCat, i)=> { %>
+                  <tr>
+                    <td>
+                      <%= i + 1 %>
+                    </td>
+                    <td>
+                      <%= extraCat.catagory.CatagoryTitle %>
+                    </td>
+                    <td>
+                      <img src="<%= extraCat.catagory.CatagoryImg %>" height="50" alt="">
+                    </td>
+                    <td>
+                      <%= extraCat.subCatagoryTitle.subCatagoryTitle %>
+                    </td>
+                    <td>
+                      <%= extraCat.extraSubCatagoryTitle %>
+                    </td>
+                    <td><a href="/ExtraSubCatagory/editExtraSubCatagory/<%= extraCat._id %>"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="/ExtraSubCatagory/deleteExtraSubCatagory/<%= extraCat._id %>"><i class="fas fa-trash"></i></a>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <%- include('../footer') %>

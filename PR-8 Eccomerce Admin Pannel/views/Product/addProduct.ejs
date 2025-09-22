@@ -1,0 +1,190 @@
+<%- include("../header") %>
+
+  <div class="page-wrapper">
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Add Product</h4>
+          <div class="ml-auto text-right">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Library</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form class="form-horizontal" action="/Product/AddProduct" method="post" enctype="multipart/form-data">
+              <div class="card-body">
+                <div class="form-group row">
+                  <label for="category" class="col-sm-3 text-right control-label col-form-label">
+                    Category
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-list-alt mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <select name="category" id="category" class="form-control">
+                      <option>Select Category</option>
+                      <% catagories && catagories.forEach((cat)=> { %>
+                        <option value="<%= cat._id %>">
+                          <%= cat.CatagoryTitle %>
+                        </option>
+                        <% }) %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="subCategory" class="col-sm-3 text-right control-label col-form-label">
+                    SubCategory
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-sitemap mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <select name="subCategoryTitle" id="subCategory" class="form-control">
+                      <option>Select Sub Category</option>
+                      <% subCatagories && subCatagories.forEach((subCat)=> { %>
+                        <option value="<%= subCat._id %>">
+                          <%= subCat.subCatagoryTitle %>
+                        </option>
+                        <% }) %>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <label for="extraSubCategory" class="col-sm-3 text-right control-label col-form-label">
+                    ExtraCategory
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-tags mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <select name="extraSubCategoryTitle" id="extraSubCategory" class="form-control">
+                      <option value="">Select Extra Sub Category</option>
+                      <% extSubCatagories && extSubCatagories.forEach((extsubCat)=> { %>
+                        <option value="<%= extsubCat._id %>">
+                          <%= extsubCat.extraSubCatagoryTitle %>
+                        </option>
+                        <% }) %>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="productName" class="col-sm-3 text-right control-label col-form-label">
+                    Product Name
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-box mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="productName" id="productName"
+                      placeholder="Enter Product Name..." required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="productPrice" class="col-sm-3 text-right control-label col-form-label">
+                    Price
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-rupee-sign mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="number" class="form-control" name="productPrice" id="productPrice"
+                      placeholder="Enter Product Price..." min="0" step="0.01" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="productDescription" class="col-sm-3 text-right control-label col-form-label">
+                    Description
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-align-left mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" name="productDescription" id="productDescription"
+                      placeholder="Enter Product Description..." rows="3" required></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="productImage" class="col-sm-3 text-right control-label col-form-label">
+                    Image
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-image mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" name="productImage" id="productImage" accept="image/*"
+                      required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="productDiscount" class="col-sm-3 text-right control-label col-form-label">
+                    Discount
+                    <span style="display:inline-block; width:24px;"></span>
+                    <i class="fas fa-percent mr-1" style="margin-left:10px;"></i>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="number" class="form-control" name="productDiscount" id="productDiscount"
+                      placeholder="Enter Discount Percentage..." min="0" max="100" step="0.01">
+                  </div>
+                </div>
+
+              </div>
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include("../footer") %>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+      <script>
+        document.getElementById("category").addEventListener("change", async function () {
+          let catId = this.value;
+          let subSelect = document.getElementById("subCategory");
+          subSelect.innerHTML = "<option value=''>-- Select SubCategory --</option>";
+
+          if (catId) {
+            let res = await fetch(`/Product/getSubCategories/${catId}`);
+            let data = await res.json();
+            data.forEach(sc => {
+              let opt = document.createElement("option");
+              opt.value = sc._id;
+              opt.textContent = sc.subCatagoryTitle;
+              subSelect.appendChild(opt);
+            });
+          }
+        });
+
+        document.getElementById("subCategory").addEventListener("change", async function () {
+          let subCatId = this.value;
+          let extraSelect = document.getElementById("extraSubCategory");
+          extraSelect.innerHTML = "<option value=''>-- Select Extra SubCategory --</option>";
+
+          if (subCatId) {
+            let res = await fetch(`/Product/getExtraSubCategories/${subCatId}`);
+            let data = await res.json();
+            data.forEach(ex => {
+              let opt = document.createElement("option");
+              opt.value = ex._id;
+              opt.textContent = ex.extraSubCatagoryTitle;
+              extraSelect.appendChild(opt);
+            });
+          }
+        });
+      </script>
